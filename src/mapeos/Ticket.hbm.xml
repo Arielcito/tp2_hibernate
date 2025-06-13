@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.grupo25.tp_obj2_hibernate.model.entities.Ticket" table="tickets">
+        <id column="id" name="id">
+            <generator class="identity" />
+        </id>
+        <property name="titulo" column="titulo" type="string" />
+        <property name="descripcion" column="descripcion" type="string" />
+        <property name="estado" column="estado" type="string" />
+        <property name="prioridad" column="prioridad" type="string" />
+        <property name="fechaCreacion" column="fecha_creacion" type="java.time.LocalDateTime" />
+        <property name="fechaResolucion" column="fecha_resolucion" type="java.time.LocalDateTime" />
+        <property name="createAt" column="create_at_ticket" type="timestamp" />
+        <property name="updateAt" column="update_at_ticket" type="timestamp" />
+        
+        <!-- Relación muchos a uno con Usuario (creador) -->
+        <many-to-one name="creador" column="creador_id" class="com.grupo25.tp_obj2_hibernate.model.entities.Usuario" />
+        
+        <!-- Relación muchos a uno con Usuario (asignado) -->
+        <many-to-one name="asignado" column="asignado_id" class="com.grupo25.tp_obj2_hibernate.model.entities.Usuario" />
+        
+        <!-- Relación muchos a uno con Categoria -->
+        <many-to-one name="categoria" column="categoria_id" class="com.grupo25.tp_obj2_hibernate.model.entities.Categoria" />
+        
+        <!-- Relación muchos a muchos con Etiqueta -->
+        <set name="etiquetas" table="ticket_etiqueta">
+            <key column="ticket_id" />
+            <many-to-many column="etiqueta_id" class="com.grupo25.tp_obj2_hibernate.model.entities.Etiqueta" />
+        </set>
+        
+        <!-- Relación uno a muchos con Comentario -->
+        <set name="comentarios" cascade="all">
+            <key column="ticket_id" />
+            <one-to-many class="com.grupo25.tp_obj2_hibernate.model.entities.Comentario" />
+        </set>
+        
+        <!-- Relación uno a muchos con Revision -->
+        <set name="revisiones" cascade="all">
+            <key column="ticket_id" />
+            <one-to-many class="com.grupo25.tp_obj2_hibernate.model.entities.Revision" />
+        </set>
+    </class>
+</hibernate-mapping> 
