@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
-    <class name="com.grupo25.tp_obj2_hibernate.model.entities.Direccion" table="direcciones">
+    <class name="datos.Direccion" table="direcciones">
         <id column="id" name="id">
             <generator class="identity" />
         </id>
@@ -13,6 +13,6 @@
         <property name="updateAt" column="update_at_direccion" type="timestamp" />
         
         <!-- Relación muchos a uno con Localidad -->
-        <many-to-one name="localidad" column="localidad_id" class="com.grupo25.tp_obj2_hibernate.model.entities.Localidad" />
+        <many-to-one name="localidad" column="localidad_id" class="datos.Localidad" />
     </class>
 </hibernate-mapping> 

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
-    <class name="com.grupo25.tp_obj2_hibernate.model.entities.Usuario" table="usuarios">
+    <class name="datos.Usuario" table="usuarios">
         <id column="id" name="id">
             <generator class="identity" />
         </id>
@@ -14,20 +14,20 @@
         <property name="updateAt" column="update_at_usuario" type="timestamp" />
         
         <!-- Mapeo de herencia para Cliente -->
-        <joined-subclass name="com.grupo25.tp_obj2_hibernate.model.entities.Cliente" table="clientes">
+        <joined-subclass name="datos.Cliente" table="clientes">
             <key column="usuario_id" />
             <property column="nro_cliente" name="nroCliente" type="int" />
             <property column="plan" name="plan" type="string" />
             <property column="particular" name="particular" type="boolean" />
-            <many-to-one name="direccion" column="direccion_id" class="com.grupo25.tp_obj2_hibernate.model.entities.Direccion" cascade="all" />
+            <many-to-one name="direccion" column="direccion_id" class="datos.Direccion" cascade="all" />
         </joined-subclass>
         
         <!-- Mapeo de herencia para Tecnico -->
-        <joined-subclass name="com.grupo25.tp_obj2_hibernate.model.entities.Tecnico" table="tecnicos">
+        <joined-subclass name="datos.Tecnico" table="tecnicos">
             <key column="usuario_id" />
             <property column="nro_contacto" name="nroContacto" type="string" />
             <property column="empresa" name="empresa" type="string" />
-            <many-to-one name="area" column="area_id" class="com.grupo25.tp_obj2_hibernate.model.entities.Area" />
+            <many-to-one name="area" column="area_id" class="datos.Area" />
         </joined-subclass>
     </class>
 </hibernate-mapping> 

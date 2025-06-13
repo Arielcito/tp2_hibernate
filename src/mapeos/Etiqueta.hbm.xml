@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
-    <class name="com.grupo25.tp_obj2_hibernate.model.entities.Etiqueta" table="etiquetas">
+    <class name="datos.Etiqueta" table="etiquetas">
         <id column="id" name="id">
             <generator class="identity" />
         </id>
@@ -12,7 +12,7 @@
         <!-- Relación muchos a muchos con Ticket -->
         <set name="tickets" table="ticket_etiqueta">
             <key column="etiqueta_id" />
-            <many-to-many column="ticket_id" class="com.grupo25.tp_obj2_hibernate.model.entities.Ticket" />
+            <many-to-many column="ticket_id" class="datos.Ticket" />
         </set>
     </class>
 </hibernate-mapping> 
