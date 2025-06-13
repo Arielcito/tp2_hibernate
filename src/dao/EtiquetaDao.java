@@ -6,19 +6,19 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-import datos.Area;
+import datos.Etiqueta;
 
-public class AreaDao {
+public class EtiquetaDao {
 	private static Session session;
 	private Transaction tx;
-	private static AreaDao instancia = null; // Patrón Singleton
+	private static EtiquetaDao instancia = null; // Patrón Singleton
 
-	protected AreaDao() {
+	protected EtiquetaDao() {
 	}
 
-	public static AreaDao getInstance() {
+	public static EtiquetaDao getInstance() {
 		if (instancia == null)
-			instancia = new AreaDao();
+			instancia = new EtiquetaDao();
 		return instancia;
 	}
 
@@ -32,23 +32,23 @@ public class AreaDao {
 		throw new HibernateException("LOG: ERROR en la capa de acceso a datos", he);
 	}
 
-	public Area traer(int idArea) {
-		Area objeto = null;
+	public Etiqueta traer(int idEtiqueta) {
+		Etiqueta objeto = null;
 		try {
 			iniciaOperacion();
-			objeto = (Area) session.createQuery("from Area a where a.id=:idArea")
-						.setParameter("idArea", idArea).uniqueResult();
+			objeto = (Etiqueta) session.createQuery("from Etiqueta e where e.id=:idEtiqueta")
+						.setParameter("idEtiqueta", idEtiqueta).uniqueResult();
 		} finally {
 			session.close();
 		}
 		return objeto;
 	}
 
-	public List<Area> traer() throws HibernateException {
-		List<Area> lista = null;
+	public List<Etiqueta> traer() throws HibernateException {
+		List<Etiqueta> lista = null;
 		try {
 			iniciaOperacion();
-			lista = session.createQuery("from Area", Area.class).list();
+			lista = session.createQuery("from Etiqueta", Etiqueta.class).list();
 		} finally {
 			session.close();
 		}
